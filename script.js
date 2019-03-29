@@ -6,7 +6,7 @@ const buttons = document.querySelectorAll("[data-time]");
 function timer(seconds) {
     // clear existing timers
     clearInterval(countdown);
-    
+
     const now = Date.now();
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
@@ -31,7 +31,7 @@ function displayTimeLeft(seconds) {
     const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
     document.title = display;
     timerDisplay.textContent = display;
-    console.log({minutes, remainderSeconds});
+    // console.log({minutes, remainderSeconds});
 }
 
 // display the time the timer will end
@@ -51,3 +51,9 @@ function startTimer() {
 
 
 buttons.forEach(button => button.addEventListener("click", startTimer));
+document.customForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const mins = this.minutes.value;
+    timer(mins * 60);
+    this.reset();
+})
